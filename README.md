@@ -2,7 +2,7 @@
 
 A brief description of what this project does and who it's for
 
-# Kalkulator Kosztów Kredytu Konsumenckiego
+# 12. Kalkulator Kosztów Kredytu Konsumenckiego
 
 ## Opis
 
