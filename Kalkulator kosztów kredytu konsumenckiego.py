@@ -64,23 +64,6 @@ def harmonogram_splat_input(kwota, oprocentowanie_roczne, liczba_rat, rodzaj_rat
         raise ValueError("Nieznany rodzaj rat. Wybierz 'rowne' lub 'malejace'.")
 
     return harmonogram
-
-def wizualizacja_struktury_kosztow(harmonogram):
-    numery_rat = [rata["numer_raty"] for rata in harmonogram]
-    odsetki = [rata["odsetki"] for rata in harmonogram]
-    kapital = [rata["kapital"] for rata in harmonogram]
-
-    plt.figure(figsize=(12, 6))
-    plt.bar(numery_rat, kapital, label="Kapitał", color="#4CAF50")
-    plt.bar(numery_rat, odsetki, bottom=kapital, label="Odsetki", color="#FF9800")
-
-    plt.xlabel("Numer raty")
-    plt.ylabel("Kwota")
-    plt.title("Struktura kosztów kredytu")
-    plt.legend()
-    plt.grid(axis='y')
-    plt.show()
-
 def porownaj_oferty_input():
     n = int(input("Ile ofert chcesz porównać? "))
     oferty = []
