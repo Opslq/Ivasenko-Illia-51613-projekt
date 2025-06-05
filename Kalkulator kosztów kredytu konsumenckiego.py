@@ -64,6 +64,7 @@ def harmonogram_splat_input(kwota, oprocentowanie_roczne, liczba_rat, rodzaj_rat
         raise ValueError("Nieznany rodzaj rat. Wybierz 'rowne' lub 'malejace'.")
 
     return harmonogram
+
 def porownaj_oferty_input():
     n = int(input("Ile ofert chcesz porównać? "))
     oferty = []
@@ -71,10 +72,10 @@ def porownaj_oferty_input():
     for i in range(n):
         print(f"\nOferta {i+1}")
         kwota = float(input("Kwota kredytu: "))
-        oprocentowanie_roczne = float(input("Oprocentowanie roczne (np. 0.05): "))
+        oprocentowanie_roczne = float(input("Oprocentowanie roczne (np. 0.05 dla 5%): "))
         liczba_rat = int(input("Liczba rat: "))
-        rodzaj_rat = input("Rodzaj rat ('rowne' lub 'malejace') [domyślnie: rowne]: ") or "rowne"
-        prowizja = input("Prowizja (np. 0.02) [domyślnie: 0]: ")
+        rodzaj_rat = input("Rodzaj rat ('rowne' lub 'malejace'): ") or "rowne"
+        prowizja = input("Prowizja (np. 0.02 dla 2%): ")
         prowizja = float(prowizja) if prowizja else 0.0
 
         oferty.append({
@@ -102,7 +103,7 @@ def porownaj_oferty(oferty):
         )
         koszt = calkowity_koszt_kredytu(raty, oferta["kwota"])
         porownanie[f"oferta_{i+1}"] = {
-            "rata": raty[0] if oferta.get("rodzaj_rat", "rowne") == "rowne" else "różne",
+            "rata": raty[0],
             "calkowity_koszt": koszt
         }
     return porownanie
@@ -128,4 +129,13 @@ def oblicz_rate(kwota, oprocentowanie_roczne, liczba_rat, rodzaj_rat="rowne", pr
 def calkowity_koszt_kredytu(raty, kwota):
     return sum(raty) - kwota
 if __name__ == "__main__":
-    oblicz_rate_input()
+    print("Wybierz opcję:")
+    print("1. Oblicz raty jednego kredytu")
+    print("2. Porównaj kilka ofert")
+    wybor = input("Wpisz 1 lub 2:")
+    if wybor == "1":
+        oblicz_rate_input()
+    elif wybor == "2":
+        porownaj_oferty_input()
+    else:
+        print("Nieprawidłowy wybór.")
